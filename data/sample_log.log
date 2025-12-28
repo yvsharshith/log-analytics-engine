@@ -1,0 +1,20 @@
+2025-01-10 12:00:00,123 INFO auth User logged in from IP
+2025-01-10 12:05:15,456 INFO db Database connection failed
+2025-01-10 12:10:30,789 INFO api Deprecated endpoint accessed 
+2025-01-10 12:15:45,012 INFO auth User logged out from IP
+2025-01-10 12:00:00,123 INFO auth User logged in from IP
+2025-01-10 12:05:15,456 INFO db Database connection failed
+2025-01-10 12:10:30,789 INFO api Deprecated endpoint accessed 
+2025-01-10 12:15:45,012 INFO auth User logged out from IP
+2025-01-10 12:00:00,123 INFO auth User logged in from IP
+2025-01-10 12:05:15,456 INFO db Database connection failed
+2025-01-10 12:10:30,789 INFO api Deprecated endpoint accessed 
+2025-01-10 12:15:45,012 INFO auth User logged out from IP
+2025-01-10 12:00:00,123 INFO auth User logged in from IP
+2025-01-10 12:05:15,456 INFO db Database connection failed
+2025-01-10 12:10:30,789 INFO api Deprecated endpoint accessed 
+2025-01-10 12:15:45,012 INFO auth User logged out from IP
+2025-01-10 12:00:00,123 INFO auth User logged in from IP
+2025-01-10 12:05:15,456 INFO db Database connection failed
+2025-01-10 12:10:30,789 INFO api Deprecated endpoint accessed 
+2025-01-10 12:15:45,012 INFO auth User logged out from IP
