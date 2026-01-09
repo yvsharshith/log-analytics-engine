@@ -1,3 +1,4 @@
 dask[dataframe]
 pandas
-python -m pip install "dask[distributed]"
+dask[distributed]
+secure-smtplib
