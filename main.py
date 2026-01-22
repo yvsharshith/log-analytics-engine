@@ -1,7 +1,7 @@
-from config.dask_config import start_dask
-from processing.pipeline import build_pipeline
-from anomaly.detector import detect_anomaly
-from config.email_config import send_anomaly_email
+from backend.config.dask_config import start_dask
+from backend.processing.pipeline import build_pipeline
+from backend.anomaly.detector import detect_anomaly
+from backend.config.email_config import send_anomaly_email
 import time
 
 
