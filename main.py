@@ -1,7 +1,7 @@
-from backend.config.dask_config import start_dask
-from backend.processing.pipeline import build_pipeline
-from backend.anomaly.detector import detect_anomaly
-from backend.config.email_config import send_anomaly_email
+from config.dask_config import start_dask
+from processing.pipeline import build_pipeline
+from anomaly.detector import detect_anomaly
+from config.email_config import send_anomaly_email
 import time
 
 
@@ -17,7 +17,7 @@ def main():
     start = time.time()
 
     # Build log processing pipeline
-    log_df = build_pipeline("data/sample_log.log")
+    log_df = build_pipeline("log_generater/realtime_logs.csv")
 
     total_logs = log_df.count().compute()
     end = time.time()
@@ -60,6 +60,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 '''
 from config.dask_config import start_dask

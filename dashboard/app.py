@@ -1,32 +1,54 @@
 # pip install streamlit plotly
 # streamlit : Python framework for building web apps for data science and machine learning
 # plotly : Interactive graphing library
-# app.py is indepent from main.py file
-# It reads the processed and deploy in visually(dashboard)
+# app.py is independent from main.py
+# It reads processed logs and visualizes them in a dashboard
 
+import sys
+import os
 import streamlit as st
-from backend.processing.pipeline import build_pipeline
-from backend.anomaly.detector import detect_anomalies
 import plotly.express as px
 
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(PROJECT_ROOT)
+
+from processing.pipeline import build_pipeline
+from anomaly.detector import detect_anomaly
+
+LOG_FILE = os.path.join(PROJECT_ROOT, "log_generator", "realtime_logs.csv")
+
 st.title("Python Based High Throughput Log Analytics Monitoring Engine")
-log_df = build_pipeline("data/sample_log.log")
-anomaly_df = detect_anomalies(log_df).compute()
-print(anomaly_df)
+
+log_df = build_pipeline(LOG_FILE)
+anomaly_df = detect_anomaly(log_df)
 
 st.subheader("Anomalies Detected in Logs")
 
-fig = px.line(anomaly_df, x='timestamp', y='anomaly_score', title='Anomaly Scores Over Time')
+if anomaly_df.empty:
+    st.warning("No anomalies detected in the logs.")
+    st.stop()
 
-st.plotly_chart(fig)
+fig = px.line(
+    anomaly_df,
+    x="timestamp",
+    y="anomaly_score",
+    title="Anomaly Scores Over Time"
+)
+st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("Anomalous Log Entries")
-st.dataframe(anomaly_df)
+st.dataframe(anomaly_df, use_container_width=True)
 
-# Filters
+st.subheader("Filter Anomalies")
 
-threshold = st.slider("Anomaly Score Threshold", min_value=0.0, max_value=1.0, value=0.5, step=0.01)
-print(threshold)
-filtered_anomalies = anomaly_df[anomaly_df['anomaly_score'] >= threshold]
-print(filtered_anomalies)
-st.dataframe(filtered_anomalies)
+threshold = st.slider(
+    "Anomaly Score Threshold",
+    min_value=0.0,
+    max_value=1.0,
+    value=0.5,
+    step=0.01
+)
+
+filtered_anomalies = anomaly_df[anomaly_df["anomaly_score"] >= threshold]
+
+st.dataframe(filtered_anomalies, use_container_width=True)
