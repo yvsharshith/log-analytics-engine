@@ -1,22 +1,22 @@
-# Log Analytics Engine
+## High-Throughput Log Analytics & Monitoring Engine 
 
-A Python-based **high-throughput log analytics and anomaly monitoring engine** built using Dask for scalable processing and Streamlit for visualization. The system ingests raw logs (batch or real-time), converts them into structured data, detects anomalous error patterns, and triggers email alerts while also providing an interactive dashboard for monitoring.
+This project aims to build a Python-based log analytics and monitoring engine designed for real-time parsing and anomaly detection in large-scale system logs. Leveraging distributed computing frameworks like Dask, the system will process logs in parallel, detect anomalies using statistical/ML models, and trigger alerts through integrated notification channels. The platform enhances system observability, reduces downtime, and supports enterprises operating mission-critical infrastructure. 
 
 ---
 
-## Project Architecture Overview
+### Project Architecture Overview
 
 The project follows a modular pipeline-based design:
 
-Log Generation → Ingestion → Processing → Anomaly Detection → Alerting → Visualization
+**Log Generation → Ingestion → Processing → Anomaly Detection → Alerting → Visualization**
 
 Each stage is isolated into its own folder to keep the system scalable, readable, and easy to extend.
 
 ---
 
-## Folder Structure & File Details
+### Folder Structure & File Details
 
-### `anomaly/`
+#### `anomaly/`
 
 Handles anomaly detection logic.
 
@@ -25,7 +25,7 @@ Uses Dask DataFrames to analyze ERROR-level logs. It groups errors by minute, co
 
 ---
 
-### `config/`
+#### `config/`
 
 Contains configuration and infrastructure setup files.
 
@@ -37,7 +37,7 @@ Handles email alerting. When an anomaly is detected, this module sends an alert 
 
 ---
 
-### `dashboard/`
+#### `dashboard/`
 
 Provides a visual monitoring interface.
 
@@ -46,7 +46,7 @@ A Streamlit-based dashboard that runs independently of `main.py`. It reads proce
 
 ---
 
-### `data/`
+#### `data/`
 
 Contains static sample log files for testing.
 
@@ -55,7 +55,7 @@ A sample structured log file used to validate ingestion and parsing logic.
 
 ---
 
-### `ingestion/`
+#### `ingestion/`
 
 Responsible for loading and parsing raw logs.
 
@@ -67,7 +67,7 @@ Parses each log line using regular expressions and converts raw text into struct
 
 ---
 
-### `log_generator/`
+#### `log_generator/`
 
 Simulates real-time log generation.
 
@@ -79,7 +79,7 @@ The output file where real-time logs are written and consumed by the pipeline.
 
 ---
 
-### `processing/`
+#### `processing/`
 
 Builds the scalable analytics pipeline.
 
@@ -88,14 +88,14 @@ Combines ingestion and parsing logic. It converts parsed log records into a Dask
 
 ---
 
-### `router/`
+#### `router/`
 
 **`service.py`**
 Reserved for routing or service-level abstractions (future extensibility).
 
 ---
 
-### `schema/`
+#### `schema/`
 
 Defines log data structure.
 
@@ -104,7 +104,7 @@ Declares the expected schema for log fields, ensuring consistency across ingesti
 
 ---
 
-### Root Files
+#### Root Files
 
 **`main.py`**
 The main execution entry point. It starts the Dask cluster, builds the log processing pipeline, runs anomaly detection, and sends email alerts when anomalies are found.
@@ -117,19 +117,19 @@ Project documentation.
 
 ---
 
-## How to Run the Project
+### How to Run the Project
 
-### 1. Clone the Repository
+#### 1. Clone the Repository
 
 ```
 git clone https://github.com/yvsharshith/log-analytics-engine.git
 cd log-analytics-engine
-git checkout milestone-4
+git checkout main
 ```
 
 ---
 
-### 2. Set Up Environment
+#### 2. Set Up Environment
 
 Make sure Python 3.8+ is installed.
 
@@ -139,7 +139,7 @@ pip install -r requirements.txt
 
 ---
 
-### 3. Start Real-Time Log Generator (Optional but Recommended)
+#### 3. Start Real-Time Log Generator
 
 In a separate terminal:
 
@@ -151,7 +151,7 @@ This will continuously generate logs into `realtime_logs.csv`.
 
 ---
 
-### 4. Run the Main Analytics Engine
+#### 4. Run the Main Analytics Engine
 
 ```
 python main.py
@@ -166,7 +166,7 @@ This will:
 
 ---
 
-### 5. Run the Dashboard
+#### 5. Run the Dashboard
 
 In another terminal:
 
@@ -175,26 +175,3 @@ streamlit run dashboard/app.py
 ```
 
 The dashboard provides interactive anomaly visualizations and filtering.
-
----
-
-## Example Log Format
-
-```
-2025-01-10 12:05:15,456 INFO auth User logged in from IP
-```
-
-Each log line consists of:
-
-* Timestamp
-* Log level
-* Service name
-* Message
-
----
-
-## Author
-
-**Harshith YVS**
-
----
