@@ -7,9 +7,9 @@ This project aims to build a Python-based log analytics and monitoring engine de
 ### Project Architecture Overview
 
 The project follows a modular pipeline-based design:
-
-**Log Generation → Ingestion → Processing → Anomaly Detection → Alerting → Visualization**
-
+```
+Log Generation → Ingestion → Processing → Anomaly Detection → Alerting → Visualization
+```
 Each stage is isolated into its own folder to keep the system scalable, readable, and easy to extend.
 
 ---
